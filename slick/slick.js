@@ -1915,13 +1915,14 @@
         if (_.options.centerMode === true) {
 
             centerOffset = Math.floor(_.options.slidesToShow / 2);
+            var even = _.options.slidesToShow % 2 == 0;
 
             if (_.options.infinite === true) {
 
                 if (index >= centerOffset && index <= (_.slideCount - 1) - centerOffset) {
 
                     _.$slides
-                        .slice(index - centerOffset, index + centerOffset + 1)
+                        .slice(index - centerOffset, index + centerOffset + (even ? 0 : 1))
                         .addClass('slick-active')
                         .attr('aria-hidden', 'false');
 
@@ -1929,7 +1930,7 @@
 
                     indexOffset = _.options.slidesToShow + index;
                     allSlides
-                        .slice(indexOffset - centerOffset + 1, indexOffset + centerOffset + 2)
+                        .slice(indexOffset - centerOffset + 1, indexOffset + centerOffset + (even ? 1 : 2))
                         .addClass('slick-active')
                         .attr('aria-hidden', 'false');
 
